@@ -1,0 +1,64 @@
+.gameContainer{
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    background-image: url(/public/assets/img/game-background.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+.gameScore{
+    text-align: center;
+    font-size: 4rem;
+    color: white;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0.2);
+}
+
+.usersContainer{
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.usersContainer > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.usersContainer > div > button{
+    color: white;
+    border: none;
+    border-radius: 3px;
+    font-size: 1.5rem;
+    padding: .5rem;
+    cursor: pointer;
+    width: 10rem;
+    margin: 1rem auto;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);
+}
+
+.usersContainer > div > button:disabled{
+    background-color: gray;
+    color: black;
+    cursor: wait;
+}
+
+.player1 > button{
+    background-color: #a32d29;
+
+}
+
+.player2 > button{
+    background-color: #04223a;
+}
+
+.turnCounter{
+    text-align: center;
+    color: white;
+    font-style: italic;
+    font-size: 1.25rem;
+}

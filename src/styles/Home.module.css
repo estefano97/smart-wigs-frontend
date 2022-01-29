@@ -1,0 +1,17 @@
+.titleHome{
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.titleHome > h1{
+    margin-bottom: 0;
+}
+
+.titleHome > img{
+    width: 20rem;
+}
+
+.leyenda{
+    color: gray;
+}
