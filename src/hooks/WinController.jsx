@@ -16,4 +16,5 @@ export const WinController = (winData) => {
     })
     .catch(err => console.log("error!: " + err));
     
+    window.location.href = "/winners";
 };

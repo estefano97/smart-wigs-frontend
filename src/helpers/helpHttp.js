@@ -4,7 +4,6 @@ const helpHttp = () => {
             accept: "application/json",
         };
 
-        //AbortController Es una propiedad de js que permite hacer algo cuando el servidor no responde para evitar que se quede la peticion colgada
         const controller = new AbortController();
         options.signal = controller.signal;
 
@@ -23,7 +22,7 @@ const helpHttp = () => {
         .then(res => res.ok ? res.json() : Promise.reject({
             err: true,
             status: res.status || "00",
-            statusText: res.statusText || "Ocurrio Un Error",
+            statusText: res.statusText || "Error !",
         }))
         .catch(err => err);
     };

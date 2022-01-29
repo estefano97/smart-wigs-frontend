@@ -11,26 +11,12 @@ const Game = () => {
     const [gamer2points, setGamer2points] = useState(0);
     const [countServer, setCountServer] = useState(0);
     const [turn, setTurn] = useState(gameOptions.server);
-    const [server, setServer] = useState(gameOptions.server);
 
     useEffect(() => {
-        let pointsCalculator1 = gamer1points - gamer2points;
-        let pointsCalculator2 = gamer2points - gamer1points;
+        let pointsCalculator = gamer1points - gamer2points;
         
-        if(server) {
-            setCountServer(countServer+1);
-        } else {
-            setCountServer(countServer-1);
-        }
-
-        console.log(countServer);
-
-        if(countServer > 2 || countServer < -2) {
-            (server)  ? setServer(false) : setServer(true);
-
-        }
         
-        if(gamer1points > 5 && pointsCalculator1 > 2) {
+        if(gamer1points > 10 && pointsCalculator > 2) {
             alert(`The Player ${gameOptions.player1}`);
             let winData = {
                 winner: {
@@ -46,7 +32,9 @@ const Game = () => {
             setGamer2points(0);
             setGamer1points(0);
         } else {
-            if(gamer2points > 5 && pointsCalculator2 > 2) {
+            console.log("Puntos diferencia: " + pointsCalculator);
+            console.log("Count Server: " + countServer);
+            if(gamer2points > 10 && pointsCalculator < -2) {
                 alert(`The Player ${gameOptions.player2}`);
                 let winData = {
                     winner: {
