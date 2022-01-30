@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Navigate } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import styles from '../styles/Game.module.css';
 import { WinController } from '../hooks/WinController';
+import PopUp from '../components/PopUp';
 
 const Game = () => {
 
@@ -9,12 +10,20 @@ const Game = () => {
 
     const [gamer1points, setGamer1points] = useState(0);
     const [gamer2points, setGamer2points] = useState(0);
-    const [countServer, setCountServer] = useState(0);
+    const [userAnotation, setUserAnotation] = useState("");
+    const [popUp, setPopUp] = useState(false);
     const [turn, setTurn] = useState(gameOptions.server);
 
     useEffect(() => {
         let pointsCalculator = gamer1points - gamer2points;
         
+        if(gamer1points !== 0 || gamer2points !== 0) {
+            console.log("valor Cambiando!");
+            setPopUp(true);
+            setTimeout(() => {
+                setPopUp(false);
+            }, 2000);
+        }
         
         if(gamer1points > 10 && pointsCalculator > 2) {
             alert(`The Player ${gameOptions.player1}`);
@@ -33,7 +42,6 @@ const Game = () => {
             setGamer1points(0);
         } else {
             console.log("Puntos diferencia: " + pointsCalculator);
-            console.log("Count Server: " + countServer);
             if(gamer2points > 10 && pointsCalculator < -2) {
                 alert(`The Player ${gameOptions.player2}`);
                 let winData = {
@@ -51,33 +59,42 @@ const Game = () => {
                 setGamer2points(0);
             }
         }
-    }, [gamer1points, gamer2points]);
+    }, [gameOptions.player1, gameOptions.player2, gamer1points, gamer2points]);
 
   return (
       <div className={styles.gameContainer}>
-          {(gameOptions) ? "" : <Navigate replace to="/"/>}
-          <h2 className={styles.gameScore}>{gamer1points} - {gamer2points}</h2>
-              <p className={styles.turnCounter}>Turno De: {(turn) ? gameOptions.player1 : gameOptions.player2}</p>
-          <div className={styles.usersContainer}>
+        {(gameOptions) ? "" : <Navigate replace to="/"/>}
+
+        {(popUp) ? <PopUp player={userAnotation}/> : ""}
+        <Link className={styles.backButton} to="/">Back</Link>
+        <h2 className={styles.gameScore}>
+            {gamer1points} - {gamer2points}
+        </h2>
+        <p className={styles.turnCounter}>
+            Turno De: {(turn) ? gameOptions.player1 : gameOptions.player2}
+        </p>
+        <div className={styles.usersContainer}>
             <div className={styles.player1}>
                 <button disabled={!turn}
-                onClick={() => {
-                    setGamer1points(gamer1points+1);
-                    setTurn(false);
-                }}>Score Point</button>
-                <button disabled={!turn} onClick={() => {
-                    setTurn(false);
-                }}>Rebound</button>
+                    onClick={() => {
+                        setGamer1points(gamer1points+1);
+                        setUserAnotation(gameOptions.player1);
+                    }}>Score Point</button>
+                <button disabled={!turn}
+                    onClick={() => {
+                        setTurn(false);
+                    }}>Rebound</button>
             </div>
             <div className={styles.player2}>
-            <button disabled={turn}
-                onClick={() => {
-                    setGamer2points(gamer2points+1);
-                    setTurn(true);
-                }}>Score Point</button>
-                <button disabled={turn} onClick={() => {
-                    setTurn(true);
-                }}>Rebound</button>
+                <button disabled={turn}
+                    onClick={() => {
+                        setGamer2points(gamer2points+1);
+                        setUserAnotation(gameOptions.player2);
+                    }}>Score Point</button>
+                <button disabled={turn}
+                    onClick={() => {
+                        setTurn(true);
+                    }}>Rebound</button>
             </div>
           </div>
       </div>

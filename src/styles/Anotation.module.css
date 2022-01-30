@@ -1,0 +1,18 @@
+.PopUpContainer{
+    position: absolute;
+    background-color: rgba(0, 0, 0, .8);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.PopUpContent{
+    text-align: center;
+    color: goldenrod;
+    text-shadow: 2px 2px 7px rgba(218, 165, 32, .8);
+    background-color: white;
+    border-radius: 5px;
+    font-size: 1.5rem;
+}

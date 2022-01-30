@@ -62,3 +62,16 @@
     font-style: italic;
     font-size: 1.25rem;
 }
+
+.backButton{
+    text-decoration: none;
+    text-align: center;
+    font-size: 2rem;
+    color: white;
+    position: absolute;
+    padding: .5rem 1rem;
+    border-radius: 6px;
+    top: .5rem;
+    left: .5rem;
+    background-color: tomato;
+}
