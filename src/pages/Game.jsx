@@ -11,14 +11,25 @@ const Game = () => {
     const [gamer1points, setGamer1points] = useState(0);
     const [gamer2points, setGamer2points] = useState(0);
     const [userAnotation, setUserAnotation] = useState("");
-    const [popUp, setPopUp] = useState(false);
+    const [changeTurn, setChangeTurn] = useState(0);
     const [turn, setTurn] = useState(gameOptions.server);
+    const [popUp, setPopUp] = useState(false);
+
+    useEffect(() => {
+        setChangeTurn(0);
+    }, [turn])
+
 
     useEffect(() => {
         let pointsCalculator = gamer1points - gamer2points;
-        
+
+        console.log("cambio de turno: " + changeTurn);
+
+        if(changeTurn === 2 || changeTurn === -2) {
+            (turn) ? setTurn(false) : setTurn(true);
+        }
+
         if(gamer1points !== 0 || gamer2points !== 0) {
-            console.log("valor Cambiando!");
             setPopUp(true);
             setTimeout(() => {
                 setPopUp(false);
@@ -26,7 +37,7 @@ const Game = () => {
         }
         
         if(gamer1points > 10 && pointsCalculator > 2) {
-            alert(`The Player ${gameOptions.player1}`);
+            alert(`The Player ${gameOptions.player1} Win!`);
             let winData = {
                 winner: {
                     name: gameOptions.player1,
@@ -41,9 +52,8 @@ const Game = () => {
             setGamer2points(0);
             setGamer1points(0);
         } else {
-            console.log("Puntos diferencia: " + pointsCalculator);
             if(gamer2points > 10 && pointsCalculator < -2) {
-                alert(`The Player ${gameOptions.player2}`);
+                alert(`The Player ${gameOptions.player2} Win!`);
                 let winData = {
                     winner: {
                         name: gameOptions.player2,
@@ -59,7 +69,7 @@ const Game = () => {
                 setGamer2points(0);
             }
         }
-    }, [gameOptions.player1, gameOptions.player2, gamer1points, gamer2points]);
+    }, [gamer1points, gamer2points]);
 
   return (
       <div className={styles.gameContainer}>
@@ -78,6 +88,7 @@ const Game = () => {
                 <button disabled={!turn}
                     onClick={() => {
                         setGamer1points(gamer1points+1);
+                        setChangeTurn(changeTurn+1);
                         setUserAnotation(gameOptions.player1);
                     }}>Score Point</button>
                 <button disabled={!turn}
@@ -89,6 +100,7 @@ const Game = () => {
                 <button disabled={turn}
                     onClick={() => {
                         setGamer2points(gamer2points+1);
+                        setChangeTurn(changeTurn-1);
                         setUserAnotation(gameOptions.player2);
                     }}>Score Point</button>
                 <button disabled={turn}

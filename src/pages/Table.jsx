@@ -43,7 +43,7 @@ export const Table = () => {
                 }
             </tbody>
         </table>
-        <Link className={styles.returnHome} to="/">Home <img src="/assets/icons/home-arrow.svg" alt="arrow"/></Link>
+        <Link className={styles.returnHome} to="/">Home</Link>
     </div>
   );
 };

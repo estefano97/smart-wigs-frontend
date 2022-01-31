@@ -74,4 +74,12 @@
     top: .5rem;
     left: .5rem;
     background-color: tomato;
+    transition: .25s;
+    border: 2px solid transparent;
+}
+
+.backButton:hover{
+    border: 2px solid tomato;
+    background-color: transparent;
+    color: tomato;
 }

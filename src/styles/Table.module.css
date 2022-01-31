@@ -1,6 +1,7 @@
 .tableContainer{
     text-align: center;
     font-size: 3rem;
+    margin-bottom: 5rem;
 }
 
 .table{
@@ -36,13 +37,16 @@
 }
 
 .returnHome{
-    color: #5f9ea0;
+    color: white;
     position: fixed;
     font-size: 2rem;
-    bottom: 1rem;
-    left: 1rem;
+    top: .5rem;
+    left: .5rem;
+    background-color: tomato;
     text-decoration: none;
     transition: .25s;
+    padding: .5rem 1rem;
+    border-radius: 6px;
 }
 
 .returnHome > img{
@@ -51,5 +55,7 @@
 }
 
 .returnHome:hover{
-    color: red;
+    border: 1px solid tomato;
+    background-color: white;
+    color: tomato;
 }
